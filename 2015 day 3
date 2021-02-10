@@ -1,0 +1,44 @@
+# Input 
+
+*inp, = open('Input')
+
+# Part One
+
+visited = [[0, 0]]
+pos = [0, 0]
+for i in inp[0]:
+	if i == '^':
+		pos[1] += 1
+	elif i == '>':
+		pos[0] += 1
+	elif i == 'v':
+		pos[1] -= 1
+	elif i == '<':
+ 		pos[0] -= 1
+
+ 	if pos not in visited:
+  	visited.append(pos.copy())
+
+print(len(visited))
+
+# Part Two
+
+visited = [[0, 0]]
+
+pos = [[0, 0], [0, 0]]
+k = 0
+for i in inp[0]:
+ 	if i == '^':
+  	pos[k][1] += 1
+ 	elif i == '>':
+		pos[k][0] += 1
+ 	elif i == 'v':
+  	pos[k][1] -= 1
+ 	elif i == '<':
+  	pos[k][0] -= 1
+
+	k = (k + 1) % 2
+	if pos[k] not in visited:
+		visited.append(pos[k].copy())
+
+print(len(visited))
