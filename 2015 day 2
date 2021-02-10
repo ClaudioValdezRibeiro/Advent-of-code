@@ -1,6 +1,8 @@
-# Part One
+# Input
 
 *inp, = open('Input')   # The input is in text called "Input"
+
+# Part One
 
 feet = 0
 for i in inp:
@@ -12,7 +14,10 @@ print(feet)
 
 # Part Two
 
+feet = 0
+for i in inp:
+	*k, = map(int,i.split('x'))
+	k.sort()
+	feet += k[0]*k[1]*k[2] + 2*(k[0] + k[1])
 
-
-
-
+print(feet)
