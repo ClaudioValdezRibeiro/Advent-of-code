@@ -1,0 +1,18 @@
+# Part One
+
+*inp, = open('Input')   # The input is in text called "Input"
+
+feet = 0
+for i in inp:
+	*k, = map(int,i.split('x'))
+	k.sort()
+	feet += 2 * (k[0]*k[1] + k[1]*k[2] + k[2]*k[0]) + k[0]*k[1]
+
+print(feet)
+
+# Part Two
+
+
+
+
+
