@@ -1,0 +1,14 @@
+# Input
+
+*inp, = open('Input')
+
+# Part One
+
+import hashlib 
+
+k = 0
+while hashlib.md5((inp[0] + str(k)).encode()).hexdigest()[:5] != '00000':
+	k += 1
+print(k) 
+
+# Part Two
