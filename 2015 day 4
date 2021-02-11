@@ -7,8 +7,17 @@
 import hashlib 
 
 k = 0
+
 while hashlib.md5((inp[0] + str(k)).encode()).hexdigest()[:5] != '00000':
 	k += 1
+	
 print(k) 
 
 # Part Two
+
+k = 0
+
+while hashlib.md5((inp[0] + str(k)).encode()).hexdigest()[:6] != '000000':
+	k += 1
+	
+print(k, hashlib.md5((inp[0] + str(k)).encode()).hexdigest()) 
