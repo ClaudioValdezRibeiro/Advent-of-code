@@ -1,0 +1,78 @@
+# Input
+
+*inp, = open('Input')
+
+# Part One
+
+*inp, = open('Input')
+
+li = {}
+index = 0
+while 'a' not in li:
+  k = inp[index].split('\n')[0].split(' -> ')
+  
+  if k[0].isnumeric():
+    li[k[1]] = (int(k[0]))%65536
+    inp.pop(index)
+  elif k[0] in li:
+    li[k[1]] = (li[k[0]])%65536
+  else:
+    func = k[0].split()
+    if func[0].isnumeric():
+      if func[2].isnumeric():
+        if func[1] == 'AND':
+          li[k[1]] = (int(func[0]) & int(func[2]))%65536
+        elif func[1] == 'OR':
+          li[k[1]] = (int(func[0]) | int(func[2]))%65536
+        elif func[1] == 'LSHIFT':
+          li[k[1]] = (int(func[0]) << int(func[2]))%65536
+        else:
+          li[k[1]] = (int(func[0]) >> int(func[2]))%65536
+        inp.pop(index)
+      elif func[2] in li:
+        if func[1] == 'AND':
+          li[k[1]] = (int(func[0]) & li[func[2]])%65536
+        elif func[1] == 'OR':
+          li[k[1]] = (int(func[0]) | li[func[2]])%65536
+        elif func[1] == 'LSHIFT':
+          li[k[1]] = (int(func[0]) << li[func[2]])%65536
+        else:
+          li[k[1]] = (int(func[0]) >> li[func[2]])%65536
+        inp.pop(index)
+    elif func[0] in li:
+      if func[2].isnumeric():
+        if func[1] == 'AND':
+          li[k[1]] = (li[func[0]] & int(func[2]))%65536
+        elif func[1] == 'OR':
+          li[k[1]] = (li[func[0]] | int(func[2]))%65536
+        elif func[1] == 'LSHIFT':
+          li[k[1]] = (li[func[0]] << int(func[2]))%65536
+        else:
+          li[k[1]] = (li[func[0]] >> int(func[2]))%65536
+        inp.pop(index)
+      elif func[2] in li:
+        if func[1] == 'AND':
+          li[k[1]] = (li[func[0]] & li[func[2]])%65536
+        elif func[1] == 'OR':
+          li[k[1]] = (li[func[0]] | li[func[2]])%65536
+        elif func[1] == 'LSHIFT':
+          li[k[1]] = (li[func[0]] << li[func[2]])%65536
+        else:
+          li[k[1]] = (li[func[0]] >> li[func[2]])%65536
+        inp.pop(index)
+    elif func[0] == 'NOT':
+      if func[1].isnumeric():
+        li[k[1]] = ~ (int(func[1]))%65536
+        inp.pop(index)
+  
+      elif func[1] in li:
+        li[k[1]] = ~ (li[func[1]])%65536
+        inp.pop(index)
+  
+  index = (index + 1) % len(inp)
+
+print(li['a'])
+
+# Part Two
+
+# Nessa aqui eu substitui o valor de b na entrada pelo valor de a
