@@ -1,0 +1,27 @@
+# Input
+
+*inp, = open('Input')
+
+# Part One
+
+t = 0
+for i in inp:
+  k = i.replace('\n', '')
+  t += len(k)
+  k = k.replace('\\\\', '+').replace('\\"', '-').replace('"', '')
+  while '\\x' in k:
+    k = k.replace(k[k.index('\\x'):k.index('\\x') + 4], '/')
+  t -= len(k)
+
+print(t)
+
+# Part Two
+
+t = 0
+for i in inp:
+  k = i.replace('\n', '')
+  t -= len(k)
+  k = k.replace('\"', 'aa').replace('\\', 'aa').replace('"','')
+  t += len(k) + 2
+
+print(t)
